@@ -1,0 +1,24 @@
+# Railway.app Configuration
+# For Sign Language Translation API
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile.prod"
+
+[deploy]
+startCommand = "uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 4"
+healthcheckPath = "/health"
+healthcheckTimeout = 100
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+# Recommended service settings
+numReplicas = 1
+
+# Environment variables (set these in Railway dashboard)
+# DATABASE_URL - Auto-set by Railway PostgreSQL plugin
+# REDIS_URL - Auto-set by Railway Redis plugin
+# SECRET_KEY - Generate a secure random string
+# ALLOWED_ORIGINS - Your frontend URLs
+# POSTGRES_PASSWORD - Set in Railway dashboard
+

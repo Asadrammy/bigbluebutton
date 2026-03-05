@@ -1,0 +1,220 @@
+# ============================================================================
+# Sign Language Translation App - Git Ignore
+# ============================================================================
+
+# ============================================================================
+# Python
+# ============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+venv312/
+
+# ============================================================================
+# Sensitive Files - NEVER COMMIT THESE!
+# ============================================================================
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
+credentials/
+
+# ============================================================================
+# Database Files - DO NOT COMMIT!
+# ============================================================================
+*.db
+*.sqlite
+*.sqlite3
+signlanguage.db
+sqlitedb.db
+*.db-journal
+
+# ============================================================================
+# Large ML Model Files - DO NOT COMMIT!
+# ============================================================================
+backend/models/*.pt
+backend/models/*.pth
+backend/models/*.h5
+backend/models/*.pb
+backend/models/*.ckpt
+backend/models/*.pkl
+backend/models/*.onnx
+backend/models/*.tflite
+
+# Keep .gitkeep files
+!backend/models/.gitkeep
+
+# ============================================================================
+# Dataset Files - TOO LARGE!
+# ============================================================================
+backend/data/datasets/*
+!backend/data/datasets/.gitkeep
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# ============================================================================
+# Cache Files
+# ============================================================================
+backend/cache/
+*.cache
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# ============================================================================
+# Node.js / React Native
+# ============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
+
+# React Native
+mobile-app/.expo/
+mobile-app/.expo-shared/
+mobile-app/dist/
+mobile-app/web-build/
+
+# ============================================================================
+# IDE / Editor
+# ============================================================================
+.vscode/
+!.vscode/settings.json.example
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Cursor AI
+.cursor/
+!.cursor/plans/
+
+# ============================================================================
+# Logs
+# ============================================================================
+*.log
+logs/
+backend/logs/
+mobile-app/logs/
+
+# ============================================================================
+# Operating System
+# ============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ============================================================================
+# Temporary Files
+# ============================================================================
+*.tmp
+*.temp
+*.bak
+*.swp
+*~.nib
+tmp/
+temp/
+
+# ============================================================================
+# Testing
+# ============================================================================
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+coverage.xml
+*.cover
+.pytest_cache/
+
+# ============================================================================
+# Build / Compiled
+# ============================================================================
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# ============================================================================
+# Documentation (Keep essentials only)
+# ============================================================================
+# Ignore all markdown files
+*.md
+
+# Keep only essential documentation
+!README.md
+!*/README.md
+!SETUP.md
+!ARCHITECTURE.md
+
+# ============================================================================
+# Deployment
+# ============================================================================
+.vercel
+.netlify
+
+# ============================================================================
+# Misc
+# ============================================================================
+.envrc
+.direnv/
+*.pid
+*.seed
+*.pid.lock
+
+# ============================================================================
+# Keep These Files (Override ignores)
+# ============================================================================
+!.gitkeep
+!.env.example
+!env.example
+!env.production.example

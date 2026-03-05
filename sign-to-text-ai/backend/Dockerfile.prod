@@ -1,0 +1,97 @@
+# Multi-stage production Dockerfile for Sign Language Translation API
+# Optimized for Python 3.12 with ML dependencies
+
+# ============================================================================
+# Stage 1: Builder - Install dependencies and compile if needed
+# ============================================================================
+FROM python:3.12-slim as builder
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Install system dependencies for building Python packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gcc \
+    g++ \
+    git \
+    curl \
+    libpq-dev \
+    libsndfile1 \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Copy requirements files
+COPY requirements.txt requirements-ml.txt ./
+
+# Install Python dependencies
+# Install base requirements first
+RUN pip install --upgrade pip setuptools wheel && \
+    pip install -r requirements.txt
+
+# Install ML dependencies (separate for better layer caching)
+RUN pip install -r requirements-ml.txt || true
+
+# ============================================================================
+# Stage 2: Runtime - Minimal production image
+# ============================================================================
+FROM python:3.12-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PATH="/opt/venv/bin:$PATH" \
+    PORT=8000
+
+# Install only runtime dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 \
+    libsndfile1 \
+    ffmpeg \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create app user (security best practice - don't run as root)
+RUN useradd -m -u 1000 appuser && \
+    mkdir -p /app /app/uploads /app/models /app/cache /app/data && \
+    chown -R appuser:appuser /app
+
+# Copy virtual environment from builder
+COPY --from=builder /opt/venv /opt/venv
+
+# Set working directory
+WORKDIR /app
+
+# Copy application code
+COPY --chown=appuser:appuser . .
+
+# Switch to non-root user
+USER appuser
+
+# Create necessary directories
+RUN mkdir -p \
+    /app/uploads \
+    /app/models \
+    /app/cache/tts \
+    /app/cache/translations \
+    /app/data/datasets \
+    /app/avatar
+
+# Expose port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Run the application with uvicorn
+# Use multiple workers in production (2 * CPU cores + 1)
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+
