@@ -17,6 +17,7 @@ node_modules/
 
 # Large binaries and archives
 *.zip
+ffmpeg-master-latest-win64-gpl/bin/*.exe
 
 # Environment
 .env
