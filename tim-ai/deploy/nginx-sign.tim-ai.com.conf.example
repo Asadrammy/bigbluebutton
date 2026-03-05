@@ -1,0 +1,44 @@
+# Example nginx server block for https://sign.tim-ai.com
+# Copy to /etc/nginx/sites-available/ (or include from main config).
+# Do NOT overwrite existing SSL config; only append or include this if missing.
+#
+# Prerequisites:
+#   - SSL cert already in place (e.g. certbot for sign.tim-ai.com)
+#   - Backend running on 127.0.0.1:8000
+#
+# Enable: sudo ln -s /etc/nginx/sites-available/sign.tim-ai.com.conf /etc/nginx/sites-enabled/
+# Test:   sudo nginx -t
+# Reload: sudo systemctl reload nginx
+
+server {
+    listen 80;
+    server_name sign.tim-ai.com;
+    # Redirect HTTP to HTTPS if SSL is configured elsewhere
+    # return 301 https://$server_name$request_uri;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+# If you use HTTPS on this server block (uncomment and adjust):
+# server {
+#     listen 443 ssl;
+#     server_name sign.tim-ai.com;
+#     ssl_certificate     /etc/letsencrypt/live/sign.tim-ai.com/fullchain.pem;
+#     ssl_certificate_key /etc/letsencrypt/live/sign.tim-ai.com/privkey.pem;
+#
+#     location / {
+#         proxy_pass http://127.0.0.1:8000;
+#         proxy_http_version 1.1;
+#         proxy_set_header Host $host;
+#         proxy_set_header X-Real-IP $remote_addr;
+#         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#         proxy_set_header X-Forwarded-Proto $scheme;
+#     }
+# }

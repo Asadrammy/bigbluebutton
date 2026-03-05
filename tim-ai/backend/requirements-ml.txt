@@ -1,0 +1,55 @@
+# ML and Computer Vision Libraries (Phase 2+)
+# Install with: pip install -r requirements-ml.txt
+
+# Core ML/Scientific Computing
+numpy>=1.26.4
+scipy>=1.11.4
+
+# Computer Vision
+opencv-python>=4.10.0.84
+
+# Deep Learning Frameworks (choose one or both)
+# PyTorch (recommended)
+torch>=2.1.1
+torchvision>=0.16.1
+
+# TensorFlow (alternative)
+# tensorflow>=2.15.0
+
+# Speech Recognition (STT)
+openai-whisper>=20231117
+# Alternative: faster-whisper>=0.10.0
+
+# Video Processing
+# mediapipe>=0.10.8  # For pose/hand tracking if needed
+
+# Translation
+argostranslate>=1.9.1
+# transformers>=4.35.2  # For advanced NLP models
+# sentencepiece>=0.1.99  # Required by some transformers
+
+# Text-to-Speech (Advanced)
+# TTS>=0.21.3  # Coqui TTS for better quality (optional upgrade from gTTS)
+
+# 3D Processing (for avatar)
+trimesh>=4.0.0
+# pyrender>=0.1.45  # For 3D rendering
+# pybullet>=3.2.5  # For physics simulation
+
+# Experiment Tracking (optional but recommended)
+# wandb>=0.16.0  # For experiment tracking
+# mlflow>=2.9.0  # Alternative for experiment tracking
+
+# Background Jobs
+celery>=5.3.4  # For async ML tasks
+# rq>=1.15.1  # Alternative to Celery (simpler)
+
+# Audio Processing
+pydub>=0.25.1
+# webrtcvad>=2.0.10  # Voice activity detection
+# librosa>=0.10.1  # Audio analysis
+
+# Utilities
+tqdm>=4.66.1  # Progress bars for training
+scikit-learn>=1.3.2  # For ML utilities
+

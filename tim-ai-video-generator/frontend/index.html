@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language AI Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤟 Sign Language AI Demo</h1>
+            <p>Speech → Text → Sign Response</p>
+        </header>
+
+        <main>
+            <div class="controls">
+                <button id="micButton" class="mic-button">
+                    <span class="mic-icon">🎤</span>
+                    <span class="mic-text">Start Recording</span>
+                </button>
+                
+                <div class="status-indicator" id="status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Ready</span>
+                </div>
+            </div>
+
+            <div class="results">
+                <div class="result-section">
+                    <h3>📝 Transcription</h3>
+                    <div id="transcription" class="result-box">
+                        Speak to see transcription...
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>🤟 Sign Response</h3>
+                    <div id="signResponse" class="result-box">
+                        Sign response will appear here...
+                    </div>
+                </div>
+            </div>
+
+            <div class="connection-status">
+                <span id="connectionStatus">🔴 Disconnected</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+{
+  "hallo": {
+    "name": "Hallo",
+    "description": "Greeting sign - wave hand",
+    "duration": 1.5,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "rightHand",
+        "position": [0.3, 1.2, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.5,
+        "bone": "rightHand",
+        "position": [0.4, 1.3, -0.2],
+        "rotation": [0.0, 0.0, 0.3, 0.95]
+      },
+      {
+        "time": 1.0,
+        "bone": "rightHand",
+        "position": [0.3, 1.2, -0.2],
+        "rotation": [0.0, 0.0, -0.3, 0.95]
+      },
+      {
+        "time": 1.5,
+        "bone": "rightHand",
+        "position": [0.3, 1.2, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  },
+  "danke": {
+    "name": "Danke",
+    "description": "Thank you - hand to chin movement",
+    "duration": 1.0,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "rightHand",
+        "position": [0.1, 1.5, -0.1],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.5,
+        "bone": "rightHand",
+        "position": [0.2, 1.4, -0.2],
+        "rotation": [0.3, 0.0, 0.0, 0.95]
+      },
+      {
+        "time": 1.0,
+        "bone": "rightHand",
+        "position": [0.1, 1.5, -0.1],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  },
+  "bitte": {
+    "name": "Bitte",
+    "description": "Please - open palm gesture",
+    "duration": 1.2,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "rightHand",
+        "position": [0.2, 1.0, -0.3],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.6,
+        "bone": "rightHand",
+        "position": [0.3, 1.2, -0.2],
+        "rotation": [0.0, 0.7, 0.0, 0.7]
+      },
+      {
+        "time": 1.2,
+        "bone": "rightHand",
+        "position": [0.2, 1.0, -0.3],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  },
+  "ja": {
+    "name": "Ja",
+    "description": "Yes - nod head downward",
+    "duration": 1.0,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "head",
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.5,
+        "bone": "head",
+        "rotation": [0.3, 0.0, 0.0, 0.95]
+      },
+      {
+        "time": 1.0,
+        "bone": "head",
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  },
+  "nein": {
+    "name": "Nein",
+    "description": "No - shake head side to side",
+    "duration": 1.0,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "head",
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.3,
+        "bone": "head",
+        "rotation": [0.0, 0.3, 0.0, 0.95]
+      },
+      {
+        "time": 0.7,
+        "bone": "head",
+        "rotation": [0.0, -0.3, 0.0, 0.95]
+      },
+      {
+        "time": 1.0,
+        "bone": "head",
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  },
+  "gut": {
+    "name": "Gut",
+    "description": "Good - thumbs up",
+    "duration": 0.8,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "rightHand",
+        "position": [0.2, 1.0, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.4,
+        "bone": "rightHand",
+        "position": [0.3, 1.3, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.8,
+        "bone": "rightHand",
+        "position": [0.2, 1.0, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  },
+  "wie": {
+    "name": "Wie",
+    "description": "How - questioning gesture",
+    "duration": 1.0,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "rightHand",
+        "position": [0.2, 1.2, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.5,
+        "bone": "rightHand",
+        "position": [0.3, 1.3, -0.1],
+        "rotation": [0.0, 0.5, 0.0, 0.87]
+      },
+      {
+        "time": 0.5,
+        "bone": "head",
+        "rotation": [0.0, 0.2, 0.0, 0.98]
+      },
+      {
+        "time": 1.0,
+        "bone": "rightHand",
+        "position": [0.2, 1.2, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 1.0,
+        "bone": "head",
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  },
+  "ich": {
+    "name": "Ich",
+    "description": "I/Me - point to self",
+    "duration": 0.7,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "rightHand",
+        "position": [0.1, 1.0, -0.3],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.35,
+        "bone": "rightHand",
+        "position": [0.0, 1.2, 0.0],
+        "rotation": [0.0, -0.7, 0.0, 0.7]
+      },
+      {
+        "time": 0.7,
+        "bone": "rightHand",
+        "position": [0.1, 1.0, -0.3],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  },
+  "du": {
+    "name": "Du",
+    "description": "You - point forward",
+    "duration": 0.7,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "rightHand",
+        "position": [0.2, 1.2, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.35,
+        "bone": "rightHand",
+        "position": [0.3, 1.3, -0.5],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.7,
+        "bone": "rightHand",
+        "position": [0.2, 1.2, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  },
+  "verstehen": {
+    "name": "Verstehen",
+    "description": "Understand - tap head",
+    "duration": 1.0,
+    "keyframes": [
+      {
+        "time": 0.0,
+        "bone": "rightHand",
+        "position": [0.2, 1.2, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 0.5,
+        "bone": "rightHand",
+        "position": [0.1, 1.6, 0.0],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      },
+      {
+        "time": 1.0,
+        "bone": "rightHand",
+        "position": [0.2, 1.2, -0.2],
+        "rotation": [0.0, 0.0, 0.0, 1.0]
+      }
+    ]
+  }
+}
+

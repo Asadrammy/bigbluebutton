@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Sign Translation Panel</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #1a1a2e;
+      color: #eee;
+      min-height: 100vh;
+    }
+    .panel {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.25rem; margin: 0 0 1rem; color: #a0e0ff; }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #4361ee;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+    .btn:hover { background: #3a56d4; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn.stop { background: #e63946; }
+    .status {
+      margin: 12px 0;
+      padding: 10px;
+      background: #16213e;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      min-height: 2.5em;
+    }
+    .result {
+      margin-top: 16px;
+      padding: 12px;
+      background: #0f3460;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    .result h3 { margin: 0 0 8px; font-size: 1rem; }
+    .result video { width: 100%; border-radius: 8px; margin-top: 8px; }
+    .error { color: #ff6b6b; }
+    .success { color: #69db7c; }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>AI Sign Translation Panel</h1>
+    <button id="micBtn" class="btn">Start Microphone</button>
+    <div id="status" class="status" aria-live="polite">Ready. Click to start recording.</div>
+    <div id="result" class="result" style="display: none;"></div>
+  </div>
+  <script src="panel.js"></script>
+</body>
+</html>

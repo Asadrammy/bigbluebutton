@@ -1,0 +1,28 @@
+# Systemd unit for Sign Language API (sign.tim-ai.com backend)
+# Copy to: /etc/systemd/system/sign-backend.service
+#
+# Usage:
+#   sudo cp deploy/sign-backend.service.example /etc/systemd/system/sign-backend.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable sign-backend
+#   sudo systemctl start sign-backend
+#   sudo systemctl status sign-backend
+#
+# Adjust User, WorkingDirectory, and ExecStart path to your server layout.
+
+[Unit]
+Description=Sign Language Translator API (uvicorn)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/sign-backend
+Environment="PATH=/var/www/sign-backend/venv/bin"
+ExecStart=/var/www/sign-backend/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

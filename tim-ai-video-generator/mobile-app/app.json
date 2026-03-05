@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Sign Language Translator",
+    "slug": "sign-language-translator",
+    "extra": {
+      "eas": {
+        "projectId": "12d9a062-11d3-4f5a-a00a-718a9d7c81e9"
+      }
+    },
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.signlanguagetranslator",
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone for audio recording."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera to record sign language gestures."
+        }
+      ]
+    ]
+  }
+}
+
