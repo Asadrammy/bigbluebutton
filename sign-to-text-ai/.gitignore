@@ -53,13 +53,15 @@ secrets/
 credentials/
 
 # ============================================================================
-# Database Files - DO NOT COMMIT!
+# Database Files - ALLOW IMPORTANT ONES!
 # ============================================================================
+# Allow specific database files
+!backend/sqlitedb.db
+!backend/signlanguage.db
+# Ignore other database files
 *.db
 *.sqlite
 *.sqlite3
-signlanguage.db
-sqlitedb.db
 *.db-journal
 
 # ============================================================================
@@ -84,17 +86,25 @@ backend/models/*.tflite
 models/**
 
 # ============================================================================
-# Dataset Files - TOO LARGE!
+# Dataset Files - ALLOW IMPORTANT ONES!
 # ============================================================================
-backend/data/datasets/*
+# Allow data directory and important files
+!backend/data/
+backend/data/**
+# Keep .gitkeep files
 !backend/data/datasets/.gitkeep
+!backend/data/uploads/.gitkeep
+# Ignore other uploads
 backend/uploads/*
 !backend/uploads/.gitkeep
 
 # ============================================================================
-# Cache Files
+# Cache Files - ALLOW SOME!
 # ============================================================================
-backend/cache/
+# Allow backend cache
+!backend/cache/
+backend/cache/**
+# Ignore other cache files
 *.cache
 .pytest_cache/
 .mypy_cache/
@@ -137,12 +147,17 @@ Thumbs.db
 !.cursor/plans/
 
 # ============================================================================
-# Logs
+# Logs - ALLOW IMPORTANT ONES!
 # ============================================================================
+# Allow logs directories
+!logs/
+!backend/logs/
+!mobile-app/logs/
+logs/**
+backend/logs/**
+mobile-app/logs/**
+# Ignore other log files
 *.log
-logs/
-backend/logs/
-mobile-app/logs/
 
 # ============================================================================
 # Operating System
