@@ -206,6 +206,39 @@ class ErrorLog(Base):
 
 
 # ============================================================================
+# BigBlueButton Meeting Tables
+# ============================================================================
+
+class Meeting(Base):
+    """Track BigBlueButton meetings created through the platform"""
+    __tablename__ = "meetings"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    # Meeting identification
+    meeting_id = Column(String, unique=True, index=True, nullable=False)
+    meeting_name = Column(String, nullable=False)
+
+    # Passwords
+    attendee_password = Column(String, default="ap")
+    moderator_password = Column(String, default="mp")
+
+    # Configuration
+    max_participants = Column(Integer, default=50)
+    is_recorded = Column(Boolean, default=False)
+    welcome_message = Column(Text, nullable=True)
+
+    # Status
+    is_active = Column(Boolean, default=True)
+
+    # Metadata
+    created_by = Column(Integer, ForeignKey("users.id"), nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    ended_at = Column(DateTime(timezone=True), nullable=True)
+    meeting_metadata = Column(JSON, default={})
+
+
+# ============================================================================
 # ML Training Tables (Phase 1.3)
 # ============================================================================
 

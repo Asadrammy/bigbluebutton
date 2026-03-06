@@ -9,7 +9,12 @@ import { saveHistory } from '@/lib/api/history';
 import { useUserSettings } from '@/hooks/use-user-settings';
 import { WebcamCapture } from '@/components/webcam-capture';
 
-const SIGN_LANGUAGES: SignLanguage[] = ['DGS', 'ASL', 'BSL', 'LSF', 'LIS', 'LSE', 'NGT', 'OGS', 'SSL'];
+const SIGN_LANGUAGES: SignLanguage[] = [
+  'DGS', 'ASL', 'JSL', 'ÖGS', 'DSGS', 'LSF', 'LSFB', 'LSL', 'LSR', 'BSL', 'ISL',
+  'NGT', 'VGT', 'LSE', 'LSC', 'LSCV', 'LGP', 'LIS', 'SMSL', 'STS', 'FSL', 'FSGL',
+  'NSL', 'DTS', 'ÍTM', 'PJM', 'ČZJ', 'SPJ', 'MJNY', 'RSL-RO', 'BSL-BG', 'GSL',
+  'TID', 'RSL', 'USL', 'BSL-BY', 'LSL-LT', 'LSL-LV', 'ESL'
+];
 const CAPTURE_INTERVAL_MS = 250;
 const MAX_FRAMES = 48;
 
@@ -141,8 +146,8 @@ export default function SignToTextPage() {
                   isRecording
                     ? 'text-primary-500 font-semibold'
                     : isSubmitting
-                    ? 'text-amber-500'
-                    : 'text-gray-400'
+                      ? 'text-amber-500'
+                      : 'text-gray-400'
                 }
               >
                 {isRecording ? 'Recording…' : isSubmitting ? 'Processing capture…' : 'Ready'}

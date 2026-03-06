@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
-from app.api import sign_to_text, speech_to_text, text_to_speech, text_to_sign, translation, auth, videos, audio, dataset, training, history, websocket
+from app.api import sign_to_text, speech_to_text, text_to_speech, text_to_sign, translation, auth, videos, audio, dataset, training, history, websocket, meetings
 
 # Configure logging
 logging.basicConfig(
@@ -72,6 +72,7 @@ app.include_router(speech_to_text.router, prefix="/api/v1", tags=["Speech Recogn
 app.include_router(text_to_speech.router, prefix="/api/v1", tags=["Text-to-Speech"])
 app.include_router(text_to_sign.router, prefix="/api/v1", tags=["Avatar Animation"])
 app.include_router(translation.router, prefix="/api/v1", tags=["Translation"])
+app.include_router(meetings.router, prefix="/api/v1/meetings", tags=["Meeting Management"])
 
 # WebSocket endpoint
 app.websocket("/ws")(websocket.websocket_endpoint)
@@ -122,13 +123,38 @@ async def startup_event():
     logger.info(f"Models directory: {settings.models_dir}")
     
     # Initialize database tables (use SQLite for MVP)
-    from app.database_sqlite import init_db
+    from app.database import init_db
     await init_db()
     logger.info("Database tables initialized")
     
-    # TODO: Load ML models here
-    # await load_sign_language_model()
-    # await load_whisper_model()
+    # Load ML models (graceful fallback if model files are not yet present)
+    try:
+        from app.services.stt import get_stt_service
+        stt = get_stt_service()
+        logger.info("Speech-to-text service initialized")
+    except Exception as e:
+        logger.warning(f"Could not initialize STT service: {e}. Will initialize on first request.")
+
+    try:
+        from app.services.sign_recognition import SignRecognitionService
+        _sign_svc = SignRecognitionService()
+        logger.info("Sign recognition service initialized")
+    except Exception as e:
+        logger.warning(f"Could not initialize sign recognition service: {e}. Will initialize on first request.")
+
+    try:
+        from app.services.avatar import AvatarAnimationService
+        _avatar_svc = AvatarAnimationService()
+        logger.info("Avatar animation service initialized")
+    except Exception as e:
+        logger.warning(f"Could not initialize avatar service: {e}. Will initialize on first request.")
+
+    try:
+        from app.services.translator import get_translation_service
+        _trans_svc = get_translation_service()
+        logger.info("Translation service initialized")
+    except Exception as e:
+        logger.warning(f"Could not initialize translation service: {e}. Will initialize on first request.")
 
 
 @app.on_event("shutdown")

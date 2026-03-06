@@ -7,9 +7,12 @@ import json
 import logging
 from typing import Dict, Any
 import asyncio
+import time
 
 from fastapi import WebSocket, WebSocketDisconnect
 from app.services.stt import SpeechToTextService
+from app.services.avatar import get_avatar_service
+from app.models import Language, SignLanguage
 from app.config import settings
 
 logger = logging.getLogger(__name__)
@@ -188,6 +191,8 @@ async def handle_text_to_sign(message: dict, websocket: WebSocket):
     """Handle text-to-sign conversion"""
     try:
         text = message.get('text', '')
+        language = message.get('language', 'de')
+        sign_language = message.get('sign_language', 'DGS')
         
         if not text:
             await manager.send_personal_message({
@@ -196,12 +201,19 @@ async def handle_text_to_sign(message: dict, websocket: WebSocket):
             }, websocket)
             return
         
-        # Dummy response
+        avatar_svc = get_avatar_service()
+        result = await avatar_svc.text_to_animation(
+            text=text,
+            language=Language(language),
+            sign_language=SignLanguage(sign_language),
+        )
+        
         await manager.send_personal_message({
-            'type': 'sign_response',
+            'type': 'sign_animation',
             'text': text,
-            'sign_type': 'text_display',
-            'message': f'Sign for: "{text}"'
+            'animation_data': result.get('animation_data'),
+            'sign_language': sign_language,
+            'resolved_signs': [s.dict() if hasattr(s, 'dict') else s for s in result.get('resolved_signs', [])],
         }, websocket)
             
     except Exception as e:

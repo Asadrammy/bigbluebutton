@@ -9,6 +9,7 @@ import time
 from app.ml.config import InferenceConfig
 from app.services.model_loader import get_model_loader
 from app.services.video_processor import video_processor
+from app.utils.mediapipe_processor import get_mediapipe_processor
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +36,9 @@ class SignLanguageInference:
         
         # Performance tracking
         self.inference_times = []
+        
+        # Landmark extraction
+        self.mp_processor = get_mediapipe_processor()
     
     def load_model(self, model_path: Optional[str] = None, sign_language: Optional[str] = None):
         """
@@ -111,6 +115,10 @@ class SignLanguageInference:
                 f"(confidence: {predictions['confidence']:.2%}, "
                 f"time: {inference_time:.3f}s)"
             )
+            
+            # Add landmarks to response
+            landmarks = self.mp_processor.process_sequence(video_frames)
+            predictions['landmarks'] = landmarks
             
             return predictions
         

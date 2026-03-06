@@ -21,7 +21,7 @@ openai-whisper>=20231117
 # Alternative: faster-whisper>=0.10.0
 
 # Video Processing
-# mediapipe>=0.10.8  # For pose/hand tracking if needed
+mediapipe>=0.10.8  # For pose/hand tracking (sign language recognition)
 
 # Translation
 argostranslate>=1.9.1

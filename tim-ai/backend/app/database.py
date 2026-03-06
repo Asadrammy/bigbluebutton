@@ -5,9 +5,8 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 from sqlalchemy.orm import declarative_base
 from app.config import settings
 
-# Database URL
-# Format: postgresql+asyncpg://user:password@host:port/dbname
-DATABASE_URL = getattr(settings, 'database_url', 'postgresql+asyncpg://postgres:postgres@localhost:5432/signlanguage')
+# Database URL - Using PostgreSQL as requested by the client
+DATABASE_URL = settings.database_url
 
 # Create async engine
 engine = create_async_engine(
@@ -51,8 +50,11 @@ async def get_db():
 # Initialize database (create tables)
 async def init_db():
     """Create all tables"""
+    # Import models here to ensure they are registered with Base.metadata
+    import app.db_models
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+    print("✅ Database tables created successfully!")
 
 
 # Close database connections

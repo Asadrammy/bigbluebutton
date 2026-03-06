@@ -71,11 +71,6 @@ export function WebcamCapture({
 
   const canRecord = useMemo(() => !disabled && !streamError && !isInitializing, [disabled, streamError, isInitializing]);
 
-  useEffect(() => {
-    if (videoRef.current && streamRef.current) {
-      videoRef.current.srcObject = streamRef.current;
-    }
-  }, [streamRef.current]);
 
   const captureFrame = () => {
     const video = videoRef.current;

@@ -4,15 +4,16 @@ import ForgotPasswordForm from './_components/forgot-password';
 import ResetPasswordForm from './_components/reset-password';
 
 type PageProps = {
-  searchParams?: { token?: string };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export const metadata: Metadata = {
   title: 'Reset Password',
 };
 
-export default function ResetPasswordPage({ searchParams }: PageProps) {
-  const token = searchParams?.token;
+export default async function ResetPasswordPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const token = typeof params.token === 'string' ? params.token : undefined;
   const displayResetForm = Boolean(token);
 
   return (

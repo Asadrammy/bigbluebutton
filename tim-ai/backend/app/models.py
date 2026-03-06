@@ -14,13 +14,45 @@ class Language(str, Enum):
 class SignLanguage(str, Enum):
     DGS = "DGS"  # German Sign Language
     ASL = "ASL"  # American Sign Language
-    BSL = "BSL"  # British Sign Language
+    JSL = "JSL"  # Japanese Sign Language
+    ÖGS = "ÖGS"  # Austrian Sign Language
+    DSGS = "DSGS"  # Swiss German Sign Language
     LSF = "LSF"  # French Sign Language
-    LIS = "LIS"  # Italian Sign Language
-    LSE = "LSE"  # Spanish Sign Language
+    LSFB = "LSFB"  # French Belgian Sign Language
+    LSL = "LSL"  # Luxemburgish Sign Language
+    LSR = "LSR"  # Swiss French Sign Language
+    BSL = "BSL"  # British Sign Language
+    ISL = "ISL"  # Irish Sign Language
     NGT = "NGT"  # Dutch Sign Language
-    OGS = "OGS"  # Austrian Sign Language
-    SSL = "SSL"  # Swedish Sign Language
+    VGT = "VGT"  # Flemish Sign Language
+    LSE = "LSE"  # Spanish Sign Language
+    LSC = "LSC"  # Catalan Sign Language
+    LSCV = "LSCV"  # Valencian Sign Language
+    LGP = "LGP"  # Portuguese Sign Language
+    LIS = "LIS"  # Italian Sign Language
+    SMSL = "SMSL"  # San Marino Sign Language
+    STS = "STS"  # Swedish Sign Language
+    FSL = "FSL"  # Finnish Sign Language
+    FSGL = "FSGL"  # Finnish-Swedish Sign Language
+    NSL = "NSL"  # Norwegian Sign Language
+    DTS = "DTS"  # Danish Sign Language
+    ÍTM = "ÍTM"  # Icelandic Sign Language
+    PJM = "PJM"  # Polish Sign Language
+    ČZJ = "ČZJ"  # Czech Sign Language
+    SPJ = "SPJ"  # Slovak Sign Language
+    MJNY = "MJNY"  # Hungarian Sign Language
+    RSL_RO = "RSL-RO"  # Romanian Sign Language
+    BSL_BG = "BSL-BG"  # Bulgarian Sign Language
+    GSL = "GSL"  # Greek Sign Language
+    TID = "TID"  # Turkish Sign Language
+    RSL = "RSL"  # Russian Sign Language
+    USL = "USL"  # Ukrainian Sign Language
+    BSL_BY = "BSL-BY"  # Belarusian Sign Language
+    LSL_LT = "LSL-LT"  # Lithuanian Sign Language
+    LSL_LV = "LSL-LV"  # Latvian Sign Language
+    ESL = "ESL"  # Estonian Sign Language
+    SSL = "SSL"  # Swedish (Alt)
+    OGS = "OGS"  # Austrian (Alt)
 
 
 # Request Models

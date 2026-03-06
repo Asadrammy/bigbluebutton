@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import clsx from 'clsx';
 import { useAuth } from '@/context/auth-context';
 
@@ -16,6 +16,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Overview', href: '/dashboard', description: 'Stats & quick launch' },
   { label: 'Sign → Text', href: '/dashboard/translator/sign-to-text', description: 'Webcam capture' },
   { label: 'Speech → Sign', href: '/dashboard/translator/speech-to-sign', description: 'Avatar playback' },
+  { label: 'Meetings', href: '/dashboard/meetings', description: 'BBB video meetings' },
   { label: 'Dictionary', href: '/dashboard/dictionary', description: 'Sign references' },
   { label: 'History', href: '/dashboard/history', description: 'Track sessions' },
   { label: 'Settings', href: '/dashboard/settings', description: 'Preferences' },
@@ -29,12 +30,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const isAuthenticated = Boolean(accessToken);
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.replace('/signin');
+    }
+  }, [isAuthenticated, router]);
+
   const activeSection = useMemo(() => {
     return NAV_ITEMS.find((item) => pathname?.startsWith(item.href)) ?? NAV_ITEMS[0];
   }, [pathname]);
 
   if (!isAuthenticated) {
-    router.replace('/signin');
     return null;
   }
 

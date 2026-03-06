@@ -55,6 +55,11 @@ class Settings(BaseSettings):
     # Redis
     redis_url: str = "redis://localhost:6379"
 
+    # BigBlueButton Integration
+    bbb_server_url: str = "https://bbb.example.com/bigbluebutton/"
+    bbb_shared_secret: str = ""
+    bbb_default_meeting_name: str = "Sign Language Meeting"
+
     # File Upload
     max_file_size: int = 10485760  # 10MB
     upload_dir: str = "./uploads"

@@ -1,15 +1,10 @@
 export type SpokenLanguage = 'de' | 'en' | 'es' | 'fr' | 'ar';
 
 export type SignLanguage =
-  | 'DGS'
-  | 'ASL'
-  | 'BSL'
-  | 'LSF'
-  | 'LIS'
-  | 'LSE'
-  | 'NGT'
-  | 'OGS'
-  | 'SSL';
+  | 'DGS' | 'ASL' | 'JSL' | 'ÖGS' | 'DSGS' | 'LSF' | 'LSFB' | 'LSL' | 'LSR' | 'BSL' | 'ISL'
+  | 'NGT' | 'VGT' | 'LSE' | 'LSC' | 'LSCV' | 'LGP' | 'LIS' | 'SMSL' | 'STS' | 'FSL' | 'FSGL'
+  | 'NSL' | 'DTS' | 'ÍTM' | 'PJM' | 'ČZJ' | 'SPJ' | 'MJNY' | 'RSL-RO' | 'BSL-BG' | 'GSL'
+  | 'TID' | 'RSL' | 'USL' | 'BSL-BY' | 'LSL-LT' | 'LSL-LV' | 'ESL' | 'SSL' | 'OGS';
 
 export type QualityLevel = 'low' | 'medium' | 'high';
 

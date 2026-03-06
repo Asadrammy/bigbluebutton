@@ -17,6 +17,7 @@
     "@hookform/resolvers": "^5.0.1",
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.4.0",
+    "ai": "^6.0.116",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "copy-text-to-clipboard": "^3.2.0",
@@ -32,6 +33,7 @@
     "tailwind-merge": "^3.2.0",
     "three": "^0.182.0",
     "use-stick-to-bottom": "^1.1.0",
+    "zod": "^3.25.76",
     "zustand": "^5.0.0-rc.1"
   },
   "devDependencies": {

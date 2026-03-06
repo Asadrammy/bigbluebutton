@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'sonner';
 import { useAuth } from '@/context/auth-context';
-import { fetchHistory, deleteHistoryItem, clearHistory, fetchHistoryStats } from '@/lib/api/history';
+import { fetchHistory, clearHistory, fetchHistoryStats } from '@/lib/api/history';
 import type { HistoryStatsResponse, TranslationHistoryEntry } from '@/lib/api/types';
 
 const TRANSLATION_TYPES: Array<{ label: string; value: 'text' | 'speech' | 'sign' | '' }> = [
@@ -16,14 +16,11 @@ const TRANSLATION_TYPES: Array<{ label: string; value: 'text' | 'speech' | 'sign
 export default function HistoryPage() {
   const { accessToken } = useAuth();
   const [items, setItems] = useState<TranslationHistoryEntry[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [perPage] = useState(10);
-  const [totalPages, setTotalPages] = useState(1);
   const [filters, setFilters] = useState<{ translation_type: '' | 'text' | 'speech' | 'sign'; language: string }>(
     { translation_type: '', language: '' },
   );
-  const [selectedEntry, setSelectedEntry] = useState<TranslationHistoryEntry | null>(null);
   const [stats, setStats] = useState<HistoryStatsResponse | null>(null);
   const [isStatsLoading, setIsStatsLoading] = useState(false);
 
@@ -88,7 +85,6 @@ export default function HistoryPage() {
     }
 
     async function loadHistory() {
-      setIsLoading(true);
       try {
         const response = await fetchHistory(accessToken!, {
           page,
@@ -97,12 +93,9 @@ export default function HistoryPage() {
           language: filters.language || undefined,
         });
         setItems(response.items);
-        setTotalPages(response.pages || 1);
       } catch (error) {
         console.error(error);
         toast.error((error as { message?: string })?.message || 'Failed to load history');
-      } finally {
-        setIsLoading(false);
       }
     }
 
@@ -127,17 +120,6 @@ export default function HistoryPage() {
     loadStats();
   }, [accessToken, canLoad]);
 
-  async function handleDelete(id: number) {
-    if (!accessToken) return;
-    try {
-      await deleteHistoryItem(accessToken, id);
-      toast.success('Entry deleted');
-      setItems((prev) => prev.filter((item) => item.id !== id));
-    } catch (error) {
-      console.error(error);
-      toast.error((error as { message?: string })?.message || 'Failed to delete entry');
-    }
-  }
 
   async function handleClear() {
     if (!accessToken) return;
@@ -175,11 +157,10 @@ export default function HistoryPage() {
                   setFilters((prev) => ({ ...prev, translation_type: prev.translation_type === (type as 'text' | 'speech' | 'sign') ? '' : (type as 'text' | 'speech' | 'sign') }));
                   setPage(1);
                 }}
-                className={`rounded-2xl border px-5 py-4 text-left transition ${
-                  filters.translation_type === type
-                    ? 'border-primary-300 bg-primary-50 dark:border-primary-500/40 dark:bg-primary-500/10'
-                    : 'border-gray-200 dark:border-gray-800'
-                }`}
+                className={`rounded-2xl border px-5 py-4 text-left transition ${filters.translation_type === type
+                  ? 'border-primary-300 bg-primary-50 dark:border-primary-500/40 dark:bg-primary-500/10'
+                  : 'border-gray-200 dark:border-gray-800'
+                  }`}
               >
                 <p className="text-xs uppercase tracking-wide text-gray-500">{label}</p>
                 <p className="text-2xl font-semibold text-gray-900 dark:text-white">

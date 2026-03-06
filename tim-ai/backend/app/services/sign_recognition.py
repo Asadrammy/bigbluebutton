@@ -96,7 +96,8 @@ class SignRecognitionService:
                 "top_predictions": prediction.get('top_k_predictions', []),
                 "inference_time": prediction.get('inference_time', 0),
                 "frames_processed": len(decoded_frames),
-                "below_threshold": prediction.get('below_threshold', False)
+                "below_threshold": prediction.get('below_threshold', False),
+                "landmarks": prediction.get('landmarks', [])
             }
         
         except Exception as e:
